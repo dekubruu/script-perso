@@ -1,18 +1,5 @@
-2025-01-04 00:51:09,145 [ERROR] Le fichier './categorie1.csv' est introuvable.
-2025-01-04 00:51:33,952 [ERROR] Le fichier './data/categorie1.csv' est introuvable.
-2025-01-04 00:51:45,937 [INFO] Fichier chargé avec succès : ../data/categorie1.csv
-2025-01-04 00:51:45,938 [INFO] Fichier chargé avec succès : ../data/categorie2.csv
-2025-01-04 00:51:45,939 [INFO] Fichier consolidé enregistré avec succès : resultats/fusionne.csv
-2025-01-04 00:52:24,953 [INFO] Recherche réalisée avec succès : 2 résultats trouvés.
-2025-01-04 00:53:31,032 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 00:56:02,718 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 00:56:16,665 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 01:03:36,869 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 01:06:01,918 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 01:07:58,174 [INFO] Rapport généré avec succès : src/resulats/rapport_personnalise.csv
-2025-01-04 01:08:26,456 [INFO] Rapport généré avec succès : resulats/rapport_personnalise.csv
-2025-01-04 01:08:50,295 [ERROR] Erreur inattendue lors de la génération du rapport : [WinError 3] Le chemin d’accès spécifié est introuvable: ''
-2025-01-04 01:08:58,660 [ERROR] Erreur inattendue lors de la génération du rapport : [Errno 13] Permission denied: '/rapport_personnalise.csv'
-2025-01-04 01:09:08,536 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 01:10:01,512 [INFO] Rapport généré avec succès : ./rapport_personnalise.csv
-2025-01-04 01:10:18,095 [INFO] Rapport généré avec succès : resultats/rapport_personnalise.csv
+2025-01-06 02:35:51,697 [INFO] Chargement réussi : ../data/categorie1.csv
+2025-01-06 02:35:51,699 [INFO] Chargement réussi : ../data/categorie2.csv
+2025-01-06 02:35:51,702 [INFO] Fichier consolidé créé avec succès : resultats/fusionne.csv
+2025-01-06 02:36:10,046 [INFO] Recherche complétée avec succès : 2 résultats trouvés.
+2025-01-06 02:36:27,412 [INFO] Rapport généré avec succès : resultats/rapport_personnalise.csv

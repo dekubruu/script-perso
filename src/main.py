@@ -5,7 +5,11 @@ from rapport import generer_rapport
 
 
 def main():
-    # Initialisation de l'argumentation
+    """
+    Point d’entrée principal du programme de gestion d'inventaire.
+    Gère les options de ligne de commande pour les opérations de fusion, recherche et rapport.
+    """
+    # Initialisation de l'analyseur d'arguments
     parser = argparse.ArgumentParser(description="Système de gestion d'inventaire")
     parser.add_argument(
         "operation",
@@ -31,16 +35,16 @@ def main():
         default="resultats/rapport_recapitulatif.csv"
     )
 
+    # Analyse des arguments
     args = parser.parse_args()
 
-    # Gestion des opérations
+    # Exécution de l'opération spécifiée
     if args.operation == "fusion":
         if not args.sources:
             print("Erreur : Vous devez fournir une liste de fichiers avec --sources pour la fusion.")
             return
 
-        succes = consolider_fichiers_csv(args.sources)
-        if succes:
+        if consolider_fichiers_csv(args.sources):
             print("Fusion des fichiers terminée avec succès.")
         else:
             print("Échec de la fusion.")
@@ -60,8 +64,7 @@ def main():
 
     elif args.operation == "rapport":
         fichier_consolide = "resultats/fusionne.csv"
-        succes = generer_rapport(fichier_consolide, args.export)
-        if succes:
+        if generer_rapport(fichier_consolide, args.export):
             print(f"Rapport exporté avec succès : {args.export}")
         else:
             print("Une erreur est survenue lors de l'export du rapport.")

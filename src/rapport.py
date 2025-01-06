@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import logging
 
-# Configurer les logs
+# Configuration du système de journalisation
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -14,46 +14,45 @@ logging.basicConfig(
 
 def generer_rapport(fichier_csv, fichier_sortie="resultats/rapport_recapitulatif.csv"):
     """
-    Génère un rapport récapitulatif des stocks à partir d'un fichier CSV consolidé.
+    Crée un rapport synthétique des stocks à partir d'un fichier consolidé.
 
     Args:
-        fichier_csv (str): Chemin du fichier CSV consolidé.
-        fichier_sortie (str): Chemin du fichier CSV où enregistrer le rapport.
+        fichier_csv (str): Chemin vers le fichier CSV consolidé.
+        fichier_sortie (str): Chemin pour enregistrer le fichier de rapport généré.
 
     Returns:
-        bool: True si le rapport a été généré avec succès, False sinon.
+        bool: Indique si le rapport a été généré avec succès ou non.
     """
     try:
-        # Vérifier que le fichier existe
         if not os.path.exists(fichier_csv):
             logging.error(f"Le fichier '{fichier_csv}' est introuvable.")
             return False
 
-        # Charger les données
+        # Lecture du fichier consolidé
         donnees = pd.read_csv(fichier_csv)
 
-        # Calculer les statistiques
+        # Création du rapport avec regroupement par catégorie
         rapport = donnees.groupby("Categorie").agg(
             Quantite_Totale=("Quantite", "sum"),
-            Valeur_Totale=("Prix Unitaire", lambda x: (x * donnees.loc[x.index, "Quantite"]).sum())
+            Valeur_Totale=("Prix Unitaire", lambda prix: (prix * donnees.loc[prix.index, "Quantite"]).sum())
         ).reset_index()
 
-        # Calculer les totaux globaux
-        quantite_totale = rapport["Quantite_Totale"].sum()
-        valeur_totale = rapport["Valeur_Totale"].sum()
+        # Calcul des totaux globaux
+        total_quantite = rapport["Quantite_Totale"].sum()
+        total_valeur = rapport["Valeur_Totale"].sum()
 
-        # Ajouter une ligne TOTAL
-        ligne_totale = pd.DataFrame(
-            data={"Categorie": ["TOTAL"], "Quantite_Totale": [quantite_totale], "Valeur_Totale": [valeur_totale]}
+        # Ajout d'une ligne TOTAL au rapport final
+        ligne_total = pd.DataFrame(
+            {"Categorie": ["TOTAL"], "Quantite_Totale": [total_quantite], "Valeur_Totale": [total_valeur]}
         )
-        rapport_final = pd.concat([rapport, ligne_totale], ignore_index=True)
+        rapport_final = pd.concat([rapport, ligne_total], ignore_index=True)
 
-        # Enregistrer le rapport
+        # Sauvegarde du rapport dans un fichier CSV
         os.makedirs(os.path.dirname(fichier_sortie), exist_ok=True)
         rapport_final.to_csv(fichier_sortie, index=False)
         logging.info(f"Rapport généré avec succès : {fichier_sortie}")
         return True
 
     except Exception as e:
-        logging.error(f"Erreur inattendue lors de la génération du rapport : {e}")
+        logging.error(f"Erreur inattendue lors de la création du rapport : {e}")
         return False
