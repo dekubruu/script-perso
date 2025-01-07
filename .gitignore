@@ -2,10 +2,8 @@
 venv/
 
 # Résultats temporaires
-src/resultats/
+./src/resultats/
 
-# Configurations PyCharm
-.idea/
 
 # Autres fichiers temporaires
 *.log
