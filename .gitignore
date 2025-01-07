@@ -1,0 +1,12 @@
+# Environnement virtuel
+venv/
+
+# Résultats temporaires
+src/resultats/
+
+# Configurations PyCharm
+.idea/
+
+# Autres fichiers temporaires
+*.log
+*.tmp
